@@ -13,8 +13,8 @@ class Game {
         return "Draw!";
     }
 
-    saveBoardToPlayersWins() {
-
+    saveBoardToPlayerWins() {
+        this[`player${turn}`][wins].push(this.board);
     }
 
     reset() {
