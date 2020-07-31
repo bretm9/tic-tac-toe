@@ -5,6 +5,11 @@ body {
     flex-direction: column;
 }
 
+main {
+    display: flex;
+    flex-direction: row;
+}
+
 section {
     display: flex;
     padding: .5em;
