@@ -18,11 +18,11 @@ class Game {
     }
 
     reset() {
-
+        this.board = [];
     }
 
     saveBoardToStorage() {
-
+        localStorage.setItem("board", JSON.stringify(this.board));
     }
 
 }
