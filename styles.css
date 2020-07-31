@@ -2,4 +2,11 @@ body {
     text-align: center;
     justify-content: center;
     grid-gap: 1em;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    padding: .5em;
+    margin: 2em;
 }
