@@ -1,6 +1,10 @@
 body {
     text-align: center;
     justify-content: center;
+    font-family: hero-new, sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: large;
 }
 
 .page {
@@ -22,6 +26,7 @@ section {
     height: 15em;
     margin: auto;
     background-color: black;
+    font-family: hero-new-hairline, sans-serif;
 }
 
 .section-game .grid>div {
