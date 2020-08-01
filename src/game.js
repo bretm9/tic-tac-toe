@@ -55,6 +55,7 @@ class Game {
                      winComboMoves++;
                 }
                 if (winComboMoves === 3) {
+                    this.saveBoardToPlayerWins();
                     return true;
                 }
             }
@@ -76,7 +77,7 @@ class Game {
     }
 
     saveBoardToPlayerWins() {
-        this[`player${turn}`][wins].push(this.board);
+        this.checkCurrentPlayer().wins.push(this.board);
     }
 
     reset() {
