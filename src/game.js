@@ -26,7 +26,6 @@ class Game {
                 return player.turn;
             }
         }
-        return "Draw!";
     }
 
     checkForFullBoard() {
