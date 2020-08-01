@@ -20,18 +20,20 @@ class Game {
         ];
     }
 
-    checkForWin() {
-        var currentPlayer;
-        var winComboMoves;
+    checkPlayerTurn() {
         if (this.turn === 1) {
-            currentPlayer = this.player1;
+            return this.player1;
         } else {
-            currentPlayer = this.player2;
+            return this.player2;
         }
+    }
+
+    checkForWin() {
+        var winComboMoves;
         for (var i = 0; i < this.winningCombos.length; i++) {
             winComboMoves = 0;
             for (var j = 0; j < 3; j++) {
-                if (currentPlayer.moves.includes(this.winningCombos[i][j])) {
+                if (this.checkPlayerTurn().moves.includes(this.winningCombos[i][j])) {
                      winComboMoves++;
                 }
                 if (winComboMoves === 3) {
