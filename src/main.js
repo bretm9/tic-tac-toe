@@ -1,8 +1,9 @@
+var newGame;
 var players = document.querySelectorAll(".section-player");
 var board = document.querySelector(".board");
 var wins = document.querySelector(".wins");
-// var gameOverOverlay = document.querySelector(".game-over-overlay");
-var newGame;
+var gameOverOverlay = document.querySelector(".game-over-overlay");
+
 
 window.addEventListener("load", doOnLoad);
 board.addEventListener("click", addTokenToCell);
@@ -21,5 +22,14 @@ function addTokenToCell(event) {
         newGame.checkCurrentPlayer().moves.push(+event.target.dataset.position);
         newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().id; 
         newGame.updateGameState();
+        renderWin();
+    }
+}
+
+function renderWin() {
+    if (newGame.gameState === "Wins!") {
+        players[newGame.turn].firstElementChild.lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`;
+        gameOverOverlay.classList.toggle("hidden");
+        newGame.reset();
     }
 }
