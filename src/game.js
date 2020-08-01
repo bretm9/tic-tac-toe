@@ -29,6 +29,12 @@ class Game {
         return "Draw!";
     }
 
+    checkForFullBoard() {
+        if (!this.board.includes(0)) {
+            return true;
+        }
+    }
+
     saveBoardToPlayerWins() {
         this[`player${turn}`][wins].push(this.board);
     }
