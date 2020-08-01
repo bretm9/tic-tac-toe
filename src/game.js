@@ -64,4 +64,8 @@ class Game {
     saveBoardToStorage() {
         localStorage.setItem("board", JSON.stringify(this.board));
     }
+
+    saveTurnToStorage() {
+        localStorage.setItem("turn", JSON.stringify(this.turn))
+    }
 }
