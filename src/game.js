@@ -27,7 +27,7 @@ class Game {
 
     updateGameState() {
         if (this.checkForWin()) {
-            this.gameState = "wins!";
+            this.gameState = "Wins!";
         }
         if (this.checkForDraw()) {
             this.gameState = "Draw!"
@@ -63,10 +63,14 @@ class Game {
     }
 
     checkForDraw() {
+        var boardCounter = 0;
         for (var i = 0; i < this.board.length; i++) {
             if (this.board[i] != 0) {
-                return !this.checkForWin();
+                boardCounter++;
             }
+        }
+        if (boardCounter === 9 && !this.checkForWin()) {
+            return true;
         }
         return false;
     }
