@@ -1,7 +1,7 @@
 class Game {
     constructor(board, turn, player1, player2, gameState) {
         this.board = [0,0,0,0,0,0,0,0,0];
-        this.turn = turn || 1;
+        this.turn = turn || 0;
         this.player1 = player1 || new Player(1,1);
         this.player2 = player2 || new Player(2,2);
         this.gameState = "turn";
@@ -18,7 +18,7 @@ class Game {
     }
 
     checkCurrentPlayer() {
-        if (this.turn === 1) {
+        if (this.turn === 0) {
             return this.player1;
         } else {
             return this.player2;
@@ -37,14 +37,12 @@ class Game {
     }
 
     changeTurn() {
-        if (this.turn === 1) {
+        if (this.turn === 0) {
             this.turn++;
         } else {
             this.turn--;
         }
     }
-
-    
 
     checkForWin() {
         var winComboMoves;
