@@ -6,8 +6,8 @@ class Game {
             [0,0,0]
         ];
         this.turn = turn || 1;
-        this.player1 = player1 || new Player();
-        this.player2 = player2 || new Player();
+        this.player1 = player1 || new Player(1,1);
+        this.player2 = player2 || new Player(2,2);
         this.winningCombos = [
             [1,2,3],
             [4,5,6],
@@ -21,9 +21,22 @@ class Game {
     }
 
     checkForWin() {
-        for (var i = 0; i < 8; i++) {
-            if (this[`player${turn}`][moves].includes(this.winningCombos[i])) {
-                return player.turn;
+        var currentPlayer;
+        var winComboMoves;
+        if (this.turn === 1) {
+            currentPlayer = this.player1;
+        } else {
+            currentPlayer = this.player2;
+        }
+        for (var i = 0; i < this.winningCombos.length; i++) {
+            winComboMoves = 0;
+            for (var j = 0; j < 3; j++) {
+                if (currentPlayer.moves.includes(this.winningCombos[i][j])) {
+                     winComboMoves++;
+                }
+                if (winComboMoves === 3) {
+                    return true;
+                }
             }
         }
     }
