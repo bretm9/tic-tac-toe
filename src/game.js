@@ -41,12 +41,16 @@ class Game {
                 }
             }
         }
+        return false;
     }
 
-    checkForFullBoard() {
-        if (!this.board.includes(0)) {
-            return true;
+    checkForDraw() {
+        for (var i = 0; i < this.board.length; i++) {
+            if (!this.board[i].includes(0)) {
+                return !this.checkForWin() ;
+            }
         }
+        return false;
     }
 
     saveBoardToPlayerWins() {
