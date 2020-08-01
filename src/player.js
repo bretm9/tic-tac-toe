@@ -6,12 +6,12 @@ class Player {
         this.wins = wins || [];
     }
 
-    saveWinsFromStorage() {
-        localStorage.setItem(`player-${id}-wins`, JSON.stringify(this.wins));
+    savePlayeToStorage() {
+        localStorage.setItem(`player-${id}`, JSON.stringify(this));
     }
 
-    retrieveWinsFromStorage() {
-        localStorage.getItem(`player-${id}-wins`);
+    retrievePlayerFromStorage() {
+        localStorage.getItem(`player-${id}`);
     }
 
 }
