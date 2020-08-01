@@ -12,9 +12,8 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] Test B
 
 ## To-Dos
-- [] Iteration0 - Foundation
-- [] Iteration1 - player.js
-- [] Iteration2 - game.js
-- [] Iteration3 - Manipulating the DOM (main.js)
-- [] Iteration4 - localStorage
+- [x] Iteration0 - Foundation
+- [x] Iteration1 - Classes
+- [] Iteration2 - Manipulating the DOM (main.js)
+- [] Iteration3 - localStorage
 - [] Refactor & Cleanup
