@@ -28,6 +28,14 @@ class Game {
         }
     }
 
+    changeTurn() {
+        if (this.turn === 1) {
+            this.turn++;
+        } else {
+            this.turn--;
+        }
+    }
+
     checkForWin() {
         var winComboMoves;
         for (var i = 0; i < this.winningCombos.length; i++) {
