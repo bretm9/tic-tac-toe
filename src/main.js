@@ -29,10 +29,18 @@ function renderGameState() {
     if (newGame.gameState === "Wins!") {
         playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id} wins!`;
         players[newGame.turn].firstElementChild.lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`;
+        resetGridItems()
     } else if (newGame.gameState === "Draw!"){
         playerTurn.innerText = "Draw!";
+        resetGridItems()
     } else {
         playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`;
     }
 }
 
+function resetGridItems() {
+    var gridDivs = board.childNodes;
+    for (var i = 0; i < gridDivs.length; i++) {
+        gridDivs[i].innerText = "";
+    }
+}
