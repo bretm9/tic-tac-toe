@@ -28,12 +28,14 @@ class Game {
     updateGameState() {
         if (this.checkForWin()) {
             this.gameState = "Wins!";
-        }
-        if (this.checkForDraw()) {
+            this.reset();
+        } else if (this.checkForDraw()) {
             this.gameState = "Draw!"
+            this.reset();
+        } else {
+            this.changeTurn();
+            return this.gameState;
         }
-        this.changeTurn();
-        return this.gameState;
     }
 
     changeTurn() {
