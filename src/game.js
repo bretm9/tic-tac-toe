@@ -1,30 +1,46 @@
 class Game {
-    constructor(board, turn, player1, player2) {
-        this.board = [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0]
-        ];
-        this.turn = turn || 1;
+    constructor(board, turn, player1, player2, gameState) {
+        this.board = [0,0,0,0,0,0,0,0,0];
+        this.turn = turn || 0;
         this.player1 = player1 || new Player(1,1);
         this.player2 = player2 || new Player(2,2);
+        this.gameState = "turn";
         this.winningCombos = [
-            [1,2,3],
-            [4,5,6],
-            [7,8,9],
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
             [1,4,7],
             [2,5,8],
-            [3,6,9],
-            [1,5,9],
-            [3,5,7]
+            [0,4,8],
+            [2,4,6]
         ];
     }
 
-    checkPlayerTurn() {
-        if (this.turn === 1) {
+    checkCurrentPlayer() {
+        if (this.turn === 0) {
             return this.player1;
         } else {
             return this.player2;
+        }
+    }
+
+    updateGameState() {
+        if (this.checkForWin()) {
+            this.gameState = `Player ${this.checkCurrentPlayer().id} wins!`;
+        } else if (this.checkForDraw()) {
+            this.gameState = "Draw!";
+        } else {
+            this.changeTurn();
+            return this.gameState;
+        }
+    }
+
+    changeTurn() {
+        if (this.turn === 0) {
+            this.turn++;
+        } else {
+            this.turn--;
         }
     }
 
@@ -33,10 +49,11 @@ class Game {
         for (var i = 0; i < this.winningCombos.length; i++) {
             winComboMoves = 0;
             for (var j = 0; j < 3; j++) {
-                if (this.checkPlayerTurn().moves.includes(this.winningCombos[i][j])) {
+                if (this.checkCurrentPlayer().moves.includes(this.winningCombos[i][j])) {
                      winComboMoves++;
                 }
                 if (winComboMoves === 3) {
+                    this.saveBoardToPlayerWins();
                     return true;
                 }
             }
@@ -45,23 +62,34 @@ class Game {
     }
 
     checkForDraw() {
+        var boardCounter = 0;
         for (var i = 0; i < this.board.length; i++) {
-            if (!this.board[i].includes(0)) {
-                return !this.checkForWin() ;
+            if (this.board[i] != 0) {
+                boardCounter++;
             }
+        }
+        if (boardCounter === 9 && !this.checkForWin()) {
+            return true;
         }
         return false;
     }
 
     saveBoardToPlayerWins() {
-        this[`player${turn}`][wins].push(this.board);
+        this.checkCurrentPlayer().wins.push(this.board);
     }
 
     reset() {
-        this.board = [];
+        this.board = [0,0,0,0,0,0,0,0,0];
+        this.player1.moves = [];
+        this.player2.moves = [];
+        this.gameState = "turn";
     }
 
     saveBoardToStorage() {
         localStorage.setItem("board", JSON.stringify(this.board));
+    }
+
+    saveTurnToStorage() {
+        localStorage.setItem("turn", JSON.stringify(this.turn))
     }
 }
