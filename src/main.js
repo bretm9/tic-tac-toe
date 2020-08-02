@@ -23,19 +23,24 @@ function addTokenToCell(event) {
         newGame.updateGameState();
         renderGameState();
     }
+    if (newGame.gameState != "turn") {
+        newGame.reset();
+    }
 }
 
 function renderGameState() {
+    var gameEndTimeout = 0;
     if (newGame.gameState === "Wins!") {
         playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id} wins!`;
         players[newGame.turn].firstElementChild.lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`;
-        resetGridItems()
+        resetGridItems();
+        gameEndTimeout = 3000;
     } else if (newGame.gameState === "Draw!"){
         playerTurn.innerText = "Draw!";
-        resetGridItems()
-    } else {
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`;
+        resetGridItems();
+        gameEndTimeout = 3000;
     }
+    setTimeout(function(){playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`}, gameEndTimeout);
 }
 
 function resetGridItems() {

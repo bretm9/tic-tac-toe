@@ -28,10 +28,8 @@ class Game {
     updateGameState() {
         if (this.checkForWin()) {
             this.gameState = "Wins!";
-            this.reset();
         } else if (this.checkForDraw()) {
-            this.gameState = "Draw!"
-            this.reset();
+            this.gameState = "Draw!";
         } else {
             this.changeTurn();
             return this.gameState;
@@ -81,7 +79,10 @@ class Game {
     }
 
     reset() {
-        this.board = [];
+        this.board = [0,0,0,0,0,0,0,0,0];
+        this.player1.moves = [];
+        this.player2.moves = [];
+        this.gameState = "turn";
     }
 
     saveBoardToStorage() {
