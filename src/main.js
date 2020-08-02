@@ -20,8 +20,8 @@ function addTokenToCell(event) {
         event.target.innerText = newGame.checkCurrentPlayer().token;
         newGame.checkCurrentPlayer().moves.push(+event.target.dataset.position);
         newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().id; 
-        renderGameState();
         newGame.updateGameState();
+        renderGameState();
     }
 }
 
