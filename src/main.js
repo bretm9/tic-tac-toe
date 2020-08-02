@@ -3,6 +3,7 @@ var players = document.querySelectorAll(".section-player");
 var board = document.querySelector(".board");
 var wins = document.querySelector(".wins");
 var playerTurn = document.querySelector(".player-turn");
+var unclickableOverlay = document.querySelector(".unclickable-overlay");
 
 window.addEventListener("load", doOnLoad);
 board.addEventListener("click", addTokenToCell);
@@ -24,23 +25,28 @@ function addTokenToCell(event) {
         renderGameState();
     }
     if (newGame.gameState != "turn") {
+        unclickableOverlay.classList.toggle("hidden");
         newGame.reset();
     }
 }
 
 function renderGameState() {
-    var gameEndTimeout = 0;
-    if (newGame.gameState === "Wins!") {
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id} wins!`;
-        players[newGame.turn].firstElementChild.lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`;
-        resetGridItems();
-        gameEndTimeout = 3000;
-    } else if (newGame.gameState === "Draw!"){
-        playerTurn.innerText = "Draw!";
-        resetGridItems();
-        gameEndTimeout = 3000;
+    var timeoutLength = 0;
+    if (newGame.gameState != "turn") {
+        playerTurn.innerText = newGame.gameState;
+        unclickableOverlay.classList.toggle("hidden");
+        timeoutLength = 3000;
+        timer(timeoutLength);
     }
-    setTimeout(function(){playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`}, gameEndTimeout);
+}
+
+
+function timer(timeoutLength) {
+    setTimeout(function() {
+        resetGridItems();
+        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`;
+    }, 
+    timeoutLength);
 }
 
 function resetGridItems() {

@@ -27,7 +27,7 @@ class Game {
 
     updateGameState() {
         if (this.checkForWin()) {
-            this.gameState = "Wins!";
+            this.gameState = `Player ${this.checkCurrentPlayer().id} wins!`;
         } else if (this.checkForDraw()) {
             this.gameState = "Draw!";
         } else {
