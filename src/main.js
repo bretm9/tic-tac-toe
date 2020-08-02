@@ -1,5 +1,5 @@
 var newGame;
-var players = document.querySelectorAll(".section-player");
+var playerWins = document.querySelectorAll(".player-header");
 var board = document.querySelector(".board");
 var wins = document.querySelector(".wins");
 var playerTurn = document.querySelector(".player-turn");
@@ -24,33 +24,41 @@ function addTokenToCell(event) {
         newGame.updateGameState();
         renderGameState();
     }
-    if (newGame.gameState != "turn") {
-        unclickableOverlay.classList.toggle("hidden");
-        newGame.reset();
-    }
 }
 
 function renderGameState() {
     var timeoutLength = 0;
+    timeoutLength = checkGameState(timeoutLength);
+    doNextAction(timeoutLength);
+}
+
+function checkGameState(timeoutLength) {
     if (newGame.gameState != "turn") {
         playerTurn.innerText = newGame.gameState;
-        unclickableOverlay.classList.toggle("hidden");
-        timeoutLength = 3000;
-        timer(timeoutLength);
+        unclickableOverlay.classList.remove("hidden");
+        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`
+        timeoutLength = 3000; 
     }
+    return timeoutLength;
 }
 
+function renderSwitchTurn() {
+        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`; 
+}
 
-function timer(timeoutLength) {
+function doNextAction(timeoutLength) {
     setTimeout(function() {
-        resetGridItems();
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`;
-    }, 
-    timeoutLength);
+        if (newGame.gameState != "turn") {
+            resetGrid();
+        }
+        renderSwitchTurn();
+    }, timeoutLength);
 }
 
-function resetGridItems() {
+function resetGrid() {
+    newGame.reset();
     var gridDivs = board.childNodes;
+    unclickableOverlay.classList.add("hidden");
     for (var i = 0; i < gridDivs.length; i++) {
         gridDivs[i].innerText = "";
     }
