@@ -86,7 +86,7 @@ class Game {
     }
 
     saveToStorage(type) {
-        localStorage.setItem(type, JSON.stringify(this[type]))
+        localStorage.setItem(type, JSON.stringify(this[type]));
     }
 
     saveAllToStorage() {
