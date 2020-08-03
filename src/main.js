@@ -20,7 +20,7 @@ function loadGame() {
     var players = [];
     if (localStorage.board) {
         for (var i = 0; i < 2; i++) {
-        retrievedPlayers[i] = JSON.parse((localStorage.getItem(`player-${i+1}`)));
+        retrievedPlayers[i] = JSON.parse((localStorage.getItem(`player-${i}`)));
         players[i] = new Player(retrievedPlayers[i].id, retrievedPlayers[i].token, retrievedPlayers[i].moves, retrievedPlayers[i].wins);
         newGame = new Game(
             JSON.parse(localStorage.getItem("board")),
@@ -41,7 +41,7 @@ function renderLoadedGame() {
         }
     }
     for (var i = 0; i < playerWins.length; i++) {
-        playerWins[i].lastElementChild.innerText = `${newGame[`player${i+1}`].wins.length} wins`;
+        playerWins[i].lastElementChild.innerText = `${newGame[`player${i}`].wins.length} wins`;
     }
 }
 
