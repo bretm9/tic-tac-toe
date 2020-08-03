@@ -1,4 +1,4 @@
-var newGame = new Game();;
+var newGame = new Game();
 var playerWins = document.querySelectorAll(".player-header");
 var boardItems = document.querySelectorAll(".div-grid-item");
 var wins = document.querySelector(".wins");
@@ -54,7 +54,7 @@ function checkGameState(timeoutLength) {
     if (newGame.gameState != "turn") {
         playerTurn.innerText = newGame.gameState;
         unclickableOverlay.classList.remove("hidden");
-        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.getCurrentPlayer().wins.length} wins`
+        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.getCurrentPlayer().wins.length} wins`;
         timeoutLength = 3000; 
     }
     return timeoutLength;
