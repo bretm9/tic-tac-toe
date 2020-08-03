@@ -106,4 +106,12 @@ class Game {
         }
         return convertedPlayers;
     }
+
+    retrieveAllFromStorage(convertedPlayers) {
+        return new Game(
+            JSON.parse(localStorage.getItem("board")),
+            JSON.parse(localStorage.getItem("turn")),
+            convertedPlayers[0],
+            convertedPlayers[1]);
+    }
 }
