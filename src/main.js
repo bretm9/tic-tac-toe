@@ -34,7 +34,7 @@ function loadGame() {
 }
 
 function renderLoadedGame() {
-    playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`; 
+    renderSwitchTurn();
     for (var i = 0; i < boardItems.length; i++) {
         if (newGame.board[i] != "") {
             boardItems[i].firstElementChild.innerText = newGame.board[i];
@@ -49,7 +49,7 @@ function addTokenToCell(event) {
     if (event.target.firstElementChild.innerText === "") {    
         event.target.firstElementChild.innerText = newGame.checkCurrentPlayer().token;
         newGame.checkCurrentPlayer().moves.push(+event.target.dataset.position);
-        newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().id; 
+        newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().token; 
         newGame.updateGameState();
         renderGameState();
         newGame.saveAllToStorage();
@@ -73,7 +73,7 @@ function checkGameState(timeoutLength) {
 }
 
 function renderSwitchTurn() {
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().id}'s turn`; 
+        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().token}'s turn`; 
 }
 
 function doNextAction(timeoutLength) {
