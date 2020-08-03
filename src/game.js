@@ -1,6 +1,6 @@
 class Game {
     constructor(board, turn, player1, player2, gameState) {
-        this.board = [0,0,0,0,0,0,0,0,0];
+        this.board = board || ["","","","","","","","",""];
         this.turn = turn || 0;
         this.player1 = player1 || new Player(1,1);
         this.player2 = player2 || new Player(2,2);
@@ -79,7 +79,7 @@ class Game {
     }
 
     reset() {
-        this.board = [0,0,0,0,0,0,0,0,0];
+        this.board = ["","","","","","","","",""];
         this.player1.moves = [];
         this.player2.moves = [];
         this.gameState = "turn";
@@ -91,5 +91,12 @@ class Game {
 
     saveTurnToStorage() {
         localStorage.setItem("turn", JSON.stringify(this.turn))
+    }
+
+    saveAllToStorage() {
+        this.saveBoardToStorage();
+        this.saveTurnToStorage();
+        this.player1.savePlayerToStorage();
+        this.player2.savePlayerToStorage();
     }
 }
