@@ -35,9 +35,9 @@ function renderLoadedGame() {
 
 function addTokenToCell(event) {
     if (event.target.firstElementChild.innerText === "") {    
-        event.target.firstElementChild.innerText = newGame.checkCurrentPlayer().token;
-        newGame.checkCurrentPlayer().moves.push(+event.target.dataset.position);
-        newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().token; 
+        event.target.firstElementChild.innerText = newGame.getCurrentPlayer().token;
+        newGame.getCurrentPlayer().moves.push(+event.target.dataset.position);
+        newGame.board[event.target.dataset.position] = newGame.getCurrentPlayer().token; 
         newGame.updateGameState();
         renderGameState();
         newGame.saveAllToStorage();
@@ -54,14 +54,14 @@ function checkGameState(timeoutLength) {
     if (newGame.gameState != "turn") {
         playerTurn.innerText = newGame.gameState;
         unclickableOverlay.classList.remove("hidden");
-        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`
+        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.getCurrentPlayer().wins.length} wins`
         timeoutLength = 3000; 
     }
     return timeoutLength;
 }
 
 function renderSwitchTurn() {
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().token}'s turn`; 
+        playerTurn.innerText = `Player ${newGame.getCurrentPlayer().token}'s turn`; 
 }
 
 function doNextAction(timeoutLength) {

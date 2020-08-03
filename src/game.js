@@ -17,7 +17,7 @@ class Game {
         ];
     }
 
-    checkCurrentPlayer() {
+    getCurrentPlayer() {
         if (this.turn === 0) {
             return this.player0;
         } else {
@@ -27,7 +27,7 @@ class Game {
 
     updateGameState() {
         if (this.checkForWin()) {
-            this.gameState = `Player ${this.checkCurrentPlayer().token} wins!`;
+            this.gameState = `Player ${this.getCurrentPlayer().token} wins!`;
         } else if (this.checkForDraw()) {
             this.gameState = "Draw!";
         } else {
@@ -49,7 +49,7 @@ class Game {
         for (var i = 0; i < this.winningCombos.length; i++) {
             winComboMoves = 0;
             for (var j = 0; j < 3; j++) {
-                if (this.checkCurrentPlayer().moves.includes(this.winningCombos[i][j])) {
+                if (this.getCurrentPlayer().moves.includes(this.winningCombos[i][j])) {
                      winComboMoves++;
                 }
                 if (winComboMoves === 3) {
@@ -75,7 +75,7 @@ class Game {
     }
 
     saveBoardToPlayerWins() {
-        this.checkCurrentPlayer().wins.push(this.board);
+        this.getCurrentPlayer().wins.push(this.board);
     }
 
     reset() {
