@@ -11,13 +11,13 @@
 ---
 
 ## Overview
-We are Module One students at Turing School of Software and Design. Throughout this project, we were focusing on learning three core front-end languages -- HTML, CSS, and JavaScript -- as well as how to use them to implement responsive design strategies and semi-permanent data-storage in a clean, dry way.
+I am a Front-End student at Turing School of Software and Design. This project was my final assignment for Module 1, and a culmination of my learning up until that point. My focus during this project was to solidify my understanding of HTML, CSS and Javascript, and better integrate the various tools and strategies I've picked up throughout Module 1.
 
-The website itself lets users create and organize different ideas they might have. Each of these ideas are stored locally on the user's machine, which allows them to persist between sessions. The ideas are displayed on a constantly resizing grid, that displays appropriately on a variety of screen-sizes.
+This website allows users to play games of Tic Tac Toe, and keep track of their wins. The page displays a gameboard and takes user input to update the data-model, which stores all aspects of the game-state. localStorage is utilitized in order to keep data persistant upon reloading the page.
 
 ### Goals
 
-Our goals, listed below in an abbreviated form, are taken directly from the Turing project write-up:
+My goals, listed below, are taken directly from the Turing project rubric:
 
 ``` Markdown
 - Solidify and demonstrate your understanding of:
