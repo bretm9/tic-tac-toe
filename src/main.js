@@ -1,4 +1,4 @@
-var newGame;
+var newGame = new Game();;
 var playerWins = document.querySelectorAll(".player-header");
 var boardItems = document.querySelectorAll(".div-grid-item");
 var wins = document.querySelector(".wins");
@@ -16,21 +16,9 @@ function doOnLoad() {
 }
 
 function loadGame() {
-    var retrievedPlayers = [];
-    var players = [];
     if (localStorage.board) {
-        for (var i = 0; i < 2; i++) {
-        retrievedPlayers[i] = JSON.parse((localStorage.getItem(`player-${i}`)));
-        players[i] = new Player(retrievedPlayers[i].id, retrievedPlayers[i].token, retrievedPlayers[i].moves, retrievedPlayers[i].wins);
-        newGame = new Game(
-            JSON.parse(localStorage.getItem("board")),
-            JSON.parse(localStorage.getItem("turn")),
-            players[0],
-            players[1]);
-        }
-    } else {
-        newGame = new Game();
-    }
+        newGame = newGame.retrieveAllFromStorage(newGame.convertPlayers());
+    } 
 }
 
 function renderLoadedGame() {
