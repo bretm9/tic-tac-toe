@@ -2,8 +2,8 @@ class Game {
     constructor(board, turn, player1, player2, gameState) {
         this.board = board || ["","","","","","","","",""];
         this.turn = turn || 0;
-        this.player1 = player1 || new Player(1,1);
-        this.player2 = player2 || new Player(2,2);
+        this.player1 = player1 || new Player(1,"X");
+        this.player2 = player2 || new Player(2,"O");
         this.gameState = "turn";
         this.winningCombos = [
             [0,1,2],
@@ -27,7 +27,7 @@ class Game {
 
     updateGameState() {
         if (this.checkForWin()) {
-            this.gameState = `Player ${this.checkCurrentPlayer().id} wins!`;
+            this.gameState = `Player ${this.checkCurrentPlayer().token} wins!`;
         } else if (this.checkForDraw()) {
             this.gameState = "Draw!";
         } else {
@@ -64,7 +64,7 @@ class Game {
     checkForDraw() {
         var boardCounter = 0;
         for (var i = 0; i < this.board.length; i++) {
-            if (this.board[i] != 0) {
+            if (this.board[i] != "") {
                 boardCounter++;
             }
         }
