@@ -7,11 +7,13 @@ class Player {
     }
 
     savePlayerToStorage() {
-        localStorage.setItem(`player-${this.id}`, JSON.stringify(this));
+        localStorage.setItem(`player${this.id}`, JSON.stringify(this));
     }
 
-    retrievePlayerFromStorage() {
-        return JSON.parse(localStorage.getItem(`player-1`));
-    } 
-
+    retrievePlayerFromStorage(object) {
+        this.id = object.id;
+        this.token = object.token;
+        this.moves = object.moves;
+        this.wins = object.wins;
+    }
 }

@@ -1,4 +1,4 @@
-var newGame;
+var newGame = new Game();
 var playerWins = document.querySelectorAll(".player-header");
 var boardItems = document.querySelectorAll(".div-grid-item");
 var wins = document.querySelector(".wins");
@@ -16,21 +16,9 @@ function doOnLoad() {
 }
 
 function loadGame() {
-    var retrievedPlayers = [];
-    var players = [];
     if (localStorage.board) {
-        for (var i = 0; i < 2; i++) {
-        retrievedPlayers[i] = JSON.parse((localStorage.getItem(`player-${i+1}`)));
-        players[i] = new Player(retrievedPlayers[i].id, retrievedPlayers[i].token, retrievedPlayers[i].moves, retrievedPlayers[i].wins);
-        newGame = new Game(
-            JSON.parse(localStorage.getItem("board")),
-            JSON.parse(localStorage.getItem("turn")),
-            players[0],
-            players[1]);
-        }
-    } else {
-        newGame = new Game();
-    }
+        newGame = newGame.retrieveAllFromStorage(newGame.convertPlayers());
+    } 
 }
 
 function renderLoadedGame() {
@@ -41,15 +29,15 @@ function renderLoadedGame() {
         }
     }
     for (var i = 0; i < playerWins.length; i++) {
-        playerWins[i].lastElementChild.innerText = `${newGame[`player${i+1}`].wins.length} wins`;
+        playerWins[i].lastElementChild.innerText = `${newGame[`player${i}`].wins.length} wins`;
     }
 }
 
 function addTokenToCell(event) {
     if (event.target.firstElementChild.innerText === "") {    
-        event.target.firstElementChild.innerText = newGame.checkCurrentPlayer().token;
-        newGame.checkCurrentPlayer().moves.push(+event.target.dataset.position);
-        newGame.board[event.target.dataset.position] = newGame.checkCurrentPlayer().token; 
+        event.target.firstElementChild.innerText = newGame.getCurrentPlayer().token;
+        newGame.getCurrentPlayer().moves.push(+event.target.dataset.position);
+        newGame.board[event.target.dataset.position] = newGame.getCurrentPlayer().token; 
         newGame.updateGameState();
         renderGameState();
         newGame.saveAllToStorage();
@@ -66,14 +54,14 @@ function checkGameState(timeoutLength) {
     if (newGame.gameState != "turn") {
         playerTurn.innerText = newGame.gameState;
         unclickableOverlay.classList.remove("hidden");
-        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.checkCurrentPlayer().wins.length} wins`
+        playerWins[newGame.turn].lastElementChild.innerText = `${newGame.getCurrentPlayer().wins.length} wins`;
         timeoutLength = 3000; 
     }
     return timeoutLength;
 }
 
 function renderSwitchTurn() {
-        playerTurn.innerText = `Player ${newGame.checkCurrentPlayer().token}'s turn`; 
+        playerTurn.innerText = `Player ${newGame.getCurrentPlayer().token}'s turn`; 
 }
 
 function doNextAction(timeoutLength) {
