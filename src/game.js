@@ -95,4 +95,15 @@ class Game {
         this.player0.savePlayerToStorage();
         this.player1.savePlayerToStorage();
     }
+
+    convertPlayers() {
+        var retrievedPlayers = [];
+        var convertedPlayers = [];
+        for (var i = 0; i < 2; i++) {
+            retrievedPlayers[i] = JSON.parse((localStorage.getItem(`player${i}`)));
+            convertedPlayers[i] = new Player();
+            convertedPlayers[i].retrievePlayerFromStorage(retrievedPlayers[i]);
+        }
+        return convertedPlayers;
+    }
 }
