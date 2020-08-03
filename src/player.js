@@ -11,7 +11,9 @@ class Player {
     }
 
     retrievePlayerFromStorage(object) {
-        JSON.parse(localStorage.getItem(`player-1`));
-    } 
-
+        this.id = object.id;
+        this.token = object.token;
+        this.moves = object.moves;
+        this.wins = object.wins;
+    }
 }
