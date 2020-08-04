@@ -62,7 +62,7 @@ My goals, listed below, are taken directly from the Turing project rubric:
 
 + The user interaction is as one would expect from an online Tic Tac Toe game. The user clicks a space on the game-board to put down their token, and the turn switches to the next player. This repeats until one player's has three of their tokens in a row.
 
-[starting layout image]
+<img width="836" alt="start" src="https://user-images.githubusercontent.com/14350203/89323664-4fe85300-d643-11ea-9676-7a4ba344931a.png">
 
 > [Back to Features](#features)
 
@@ -70,11 +70,11 @@ My goals, listed below, are taken directly from the Turing project rubric:
 
 + Once a user gets three tokens in a row, the game is over! A win state is displayed at the top of the page which indicates which player won. The game is momentarily paused and unclickable so the players can take a few seconds to look at the board and understand who won.
 
-[win image]
+<img width="839" alt="win" src="https://user-images.githubusercontent.com/14350203/89323715-642c5000-d643-11ea-8076-f6763d6116eb.png">
 
-Contrastly, if the board is filled with tokens before either player gets three in a row, neither player wins. The game ends and a "Draw" message is displayed at the top of the page. Like what happens when there is a win, the game also pauses and is unclickable for a short moment when a draw occurs.
++ Contrastly, if the board is filled with tokens before either player gets three in a row, neither player wins. The game ends and a "Draw" message is displayed at the top of the page. Like what happens when there is a win, the game also pauses and is unclickable for a short moment when a draw occurs.
 
-[draw image]
+<img width="838" alt="draw" src="https://user-images.githubusercontent.com/14350203/89323751-73130280-d643-11ea-8cc1-3b2b28cf4552.png">
 
 > [Back to Features](#features)
 
@@ -82,7 +82,7 @@ Contrastly, if the board is filled with tokens before either player gets three i
 
 + Once a game ends from either a win or a draw, the board is reset after afformentioned brief pause and a new game begins. Whichever player won the last game goes first.
 
-[new game with win for one player]
+<img width="840" alt="new-game" src="https://user-images.githubusercontent.com/14350203/89324799-144e8880-d645-11ea-9b08-e5983f44f128.png">
 
 > [Back to Features](#features)
 
@@ -90,13 +90,17 @@ Contrastly, if the board is filled with tokens before either player gets three i
 
 + Once a game is won, the win count for winning player is updated on the page. This information is viewable in the player status columns on the right and left of the page.
 
-[player wins]
+<img width="840" alt="player-wins" src="https://user-images.githubusercontent.com/14350203/89324824-1f091d80-d645-11ea-9d2d-c745dc826ce2.png">
 
 > [Back to Features](#features)
 
 ## Reloading The Page
 
 + If the page is reloaded at any point during or after a game, all data persists from the state it was in before the refresh. Upon every action taken in the game, the game state is saved into localStorage. This is what allows it to be presented again once the page is reloaded.
+
+<img width="840" alt="local-storage-1" src="https://user-images.githubusercontent.com/14350203/89324990-668fa980-d645-11ea-8bd8-14774876361d.png">
+
+<img width="840" alt="local-storage-2" src="https://user-images.githubusercontent.com/14350203/89325017-6f807b00-d645-11ea-85d6-e1553ddcab03.png">
 
 > [Back to Features](#features)
 
